@@ -15,6 +15,10 @@ class Site:
             if parser.valid_extension(extension):
                 return parser
 
+    def run_parser(self, path):
+        parser = self.load_parser(path.suffix)
+
+
     def build(self):
         self.dest.mkdir(parents=True, exist_ok=True)
         for path in self.source.rglob("*"):
