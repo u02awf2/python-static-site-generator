@@ -10,6 +10,10 @@ class Site:
         directory = self.dest / path.relative_to(self.source)
         directory.mkdir(parents=True, exist_ok=True)
 
+    def load_parser(self, extension):
+        for parser in self.parsers:
+            if parser.valid_extension(extension):
+                return parser
 
     def build(self):
         self.dest.mkdir(parents=True, exist_ok=True)
