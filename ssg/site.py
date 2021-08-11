@@ -1,3 +1,5 @@
+import sys
+
 from pathlib import Path
 
 class Site:
@@ -22,7 +24,6 @@ class Site:
         else:
             print("Not Implemented")
 
-
     def build(self):
         self.dest.mkdir(parents=True, exist_ok=True)
         for path in self.source.rglob("*"):
@@ -31,4 +32,6 @@ class Site:
             elif path.is_file():
                 self.run_parser(path)
 
-
+    @staticmethod
+    def error(message):
+        sys.stderr.write("\x1b[1;31m{}\n".format(message))
